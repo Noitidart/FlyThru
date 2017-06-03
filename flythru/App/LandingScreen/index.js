@@ -41,48 +41,44 @@ class LandingScreen extends React.Component {
             alignSelf: 'center',
             marginRight: '10%',
             transform: [
-                { scale: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] }) },
-                { translateX:anim.interpolate({ inputRange:[0,1,1.1,1.2,1.5,1.9,1.9,2], outputRange:[0,0,1,0,-1,0,1,0]}) },
-                { translateY:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,1,0,-1,0,1,0]}) }
+                { scale: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] }) }
             ],
-            opacity: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] })
+            opacity: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] })
         };
         const style_ball_settings = {
             alignSelf: 'flex-end',
             marginTop: '16%',
             marginRight: '12%',
             transform: [
-                { scale: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] }) },
-                { translateX:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,-1,0,1,0,-1,0]}) },
-                { translateY:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,-1,0,1,0,-1,0]}) }
+                { scale: anim.interpolate({ inputRange:[0,.2,2], outputRange:[0,1,1] }) }
             ],
-            opacity: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] })
+            opacity: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] })
         };
         const style_ball_history = {
             alignSelf: 'flex-start',
             marginTop: '5%',
             marginLeft: '10%',
             transform: [
-                { scale: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] }) },
-                { translateX:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,1,0,-1,0,1,0]}) },
-                { translateY:anim.interpolate({ inputRange:[0,1,1.4,1.5,1.7,2,2,2], outputRange:[0,0,-1,0,1,0,-1,0]}) }
+                { scale: anim.interpolate({ inputRange:[0,.4,2], outputRange:[0,1,1] }) }
             ],
-            opacity: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] })
+            opacity: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] })
         };
 
         return (
-            <View>
+            <View style={styles.mainview}>
                 <Title anim={anim}>FlyThru</Title>
-                <Animated.View style={style_ball_play}>
-                    <Ball label="&#61455;" onPress={this.gotoPlay} size={200} />
-                </Animated.View>
-                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                    <Animated.View style={style_ball_history}>
-                        <Ball label="&#62768;" onPress={this.gotoHistory} size={100} />
+                <View style={styles.controls}>
+                    <Animated.View style={style_ball_play}>
+                        <Ball label="&#61455;" onPress={this.gotoPlay} size={200} hover />
                     </Animated.View>
-                    <Animated.View style={style_ball_settings}>
-                        <Ball label="&#39041;" onPress={this.gotoSettings} size={110} />
-                    </Animated.View>
+                    <View style={styles.subcontrols}>
+                        <Animated.View style={style_ball_history}>
+                            <Ball label="&#62768;" onPress={this.gotoHistory} size={100} hover />
+                        </Animated.View>
+                        <Animated.View style={style_ball_settings}>
+                            <Ball label="&#39041;" onPress={this.gotoSettings} size={110} hover />
+                        </Animated.View>
+                    </View>
                 </View>
             </View>
         )
