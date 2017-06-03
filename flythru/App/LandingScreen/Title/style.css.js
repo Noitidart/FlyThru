@@ -2,7 +2,9 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     title_view: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        margin: 15,
+        marginBottom: 30
     },
     title_char: {
         marginHorizontal: 5,
