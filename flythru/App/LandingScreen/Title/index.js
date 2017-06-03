@@ -35,7 +35,8 @@ class Title extends PureComponent {
             const style_anim = {
                 transform: [{ [translate]:anim.interpolate({ inputRange:[inst,inout,1,2], outputRange:[this[dim]*inverse,0,0,0]}) }]
             };
-            return <Animated.Text key={ix.toString()} style={[styles.title_char, style_anim]}>{char}</Animated.Text>;
+            // return <Animated.Text key={ix.toString()} style={[styles.title_char, style_anim]}>{char}</Animated.Text>;
+            return <Animated.Text key={ix.toString()} style={[styles.title_char, style_anim, ['F','T'].includes(char) ? styles.title_char_big : undefined]}>{char}</Animated.Text>;
         });
 
         const style_hover = {
