@@ -10,7 +10,7 @@ const BULLET_WIDTH = 30;
 
 class Bullet extends Component {
     /* props
-    children - string
+    gameover
     hole - object,
     duration - 2000 // time to spend on screen. it reaches bottom of bar at half this
     bullet_number
@@ -24,23 +24,42 @@ class Bullet extends Component {
     static defaultProps = {
         duration: 2000
     }
+    passed = false
     constructor(props) {
         super(props);
         const { width } = Dimensions.get('window');
         this.left = randInt(0, width - BULLET_WIDTH);
     }
+    componentWillUpdate(props_next) {
+        const { gameover:gameover_next } = props_next;
+        const { gameover } = this.props;
+
+        // if (gameover_next !== gameover && gameover_next)
+        if (gameover_next) {
+            if (!this.passed) {
+                const { anim } = this.state;
+                anim.stopAnimation();
+            }
+        }
+    }
     componentDidMount() {
         const { anim } = this.state;
-        const { duration, incrementScore, crash, bullet_number, bulletReachedEOS } = this.props;
+        const { gameover, duration, incrementScore, crash, bullet_number, bulletReachedEOS } = this.props;
+
+        if (gameover) return;
+
         Animated.timing(anim, { toValue:.5, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
-            .start(()=> {
-                // hit test bullet and hole
-                if (this.isBulletWithinHole()) {
-                    Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
-                        .start(()=>bulletReachedEOS(bullet_number))
-                    incrementScore();
-                } else {
-                    crash();
+            .start(({ finished })=> {
+                if (finished) {
+                    // hit test bullet and hole
+                    if (this.isBulletWithinHole()) {
+                        Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
+                            .start(()=>bulletReachedEOS(bullet_number))
+                        this.passed = true;
+                        incrementScore();
+                    } else {
+                        crash();
+                    }
                 }
             });
     }

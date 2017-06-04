@@ -28,6 +28,8 @@ class PlayScreen extends Component {
     this.hole = {};
   }
   crash = () => {
+    const { gameover } = this.state;
+    if (gameover) return;
     this.hole.stop();
     console.log('you lose');
     Vibration.vibrate();
@@ -81,7 +83,7 @@ class PlayScreen extends Component {
     setTimeout(this.shootAgain, randInt(duration_new / 2, duration_new)); // timeout of duration means
   }
   render() {
-    const { score, bullets } = this.state;
+    const { gameover, score, bullets } = this.state;
 
     return (
       <View style={styles.mainview}>
@@ -91,7 +93,7 @@ class PlayScreen extends Component {
         <View style={styles.barview}>
           <View style={styles.bar} />
           <Hole hackref={this.hole} />
-          { bullets.map( ({ bullet_number, duration }) => <Bullet duration={duration} key={bullet_number} bullet_number={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} bulletReachedEOS={this.bulletReachedEOS} crash={this.crash} /> ) }
+          { bullets.map( ({ bullet_number, duration }) => <Bullet duration={duration} key={bullet_number} bullet_number={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} bulletReachedEOS={this.bulletReachedEOS} crash={this.crash} gameover={gameover} /> ) }
         </View>
       </View>
     );
