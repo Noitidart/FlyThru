@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { View, Text, Dimensions, Animated } from 'react-native'
 
+import { randInt } from '../../utils'
+
 import styles from './style.css'
 
 class Title extends PureComponent {
@@ -57,10 +59,6 @@ function shuffle(a) {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
-}
-
-function randInt(min, max) {
-    return Math.floor(Math.random() * (1+max-min)) + min
 }
 
 export default Title

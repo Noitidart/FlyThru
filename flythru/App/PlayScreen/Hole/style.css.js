@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: HOLE_HEIGHT,
         width: HOLE_WIDTH,
-        backgroundColor: 'red'// '#FFFFFF'
+        backgroundColor: '#FFFFFF'
     }
 })
 

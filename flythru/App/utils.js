@@ -15,3 +15,7 @@ export function getStatusBarHeight() {
 export async function wait(ms) {
     await new Promise(resolve => setTimeout(()=>resolve(), ms));
 }
+
+export function randInt(min, max) {
+    return Math.floor(Math.random() * (1+max-min)) + min
+}

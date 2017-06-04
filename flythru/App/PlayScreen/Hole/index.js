@@ -30,7 +30,7 @@ class Hole extends PureComponent {
 
         if (this.left === 901) {
             const center = (width / 2) - (HOLE_WIDTH / 2);
-            this.left = 15; //Math.round(center);
+            this.left = Math.round(center);
         } else {
             if (typeof Accelerometer !== 'undefined') {
                 const { x, y, z } = Accelerometer;
@@ -74,7 +74,9 @@ class Hole extends PureComponent {
 // export default Hole
 
 export default sensors({
-  Accelerometer: false,
+  Accelerometer: {
+      updateInterval: 16
+  },
   Gyroscope: false,
   Magnetometer: false
 })(Hole);
