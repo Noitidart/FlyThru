@@ -25,18 +25,17 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        const { hole } = this.props;
-        Animated.timing(anim, { toValue:.5, duration:ANIM_DURATION/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
-            .start(()=> {
-                // hit test bullet and hole
-                console.log('hole.getLeft()', hole.getLeft());
-                if (this.isBulletWithinHole()) {
-                    Animated.timing(anim, { toValue:1, duration:ANIM_DURATION/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
-                        .start()
-                } else {
-                    console.log('you lose');
+        anim.addListener(({value}) => {
+            // console.log('value.toFixed(2):', value.toFixed(2), value);
+            if (value.toFixed(2) == 0.50) {
+                // console.log('doing hit test now');
+                if (!this.isBulletWithinHole()) {
+                    anim.stopAnimation();
+                    console.log('you lose!');
                 }
-            });
+            }
+        });
+        Animated.timing(anim, { toValue:1, duration:ANIM_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true }).start();
     }
     isBulletWithinHole = () => { // bind untested
         const { hole } = this.props;

@@ -75,7 +75,7 @@ class Hole extends PureComponent {
 
 export default sensors({
   Accelerometer: {
-      updateInterval: 16
+      updateInterval: 20
   },
   Gyroscope: false,
   Magnetometer: false
