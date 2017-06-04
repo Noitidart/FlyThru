@@ -8,6 +8,8 @@ import Bullet from './Bullet'
 
 import styles from './style.css'
 
+const DURATION_MIN = 1000;
+
 class PlayScreen extends Component {
   static navigationOptions = {
     title: 'Play'
@@ -15,7 +17,7 @@ class PlayScreen extends Component {
   state = {
     tilt: 0,
     score: 0,
-    duration: 3000, // bullet duration
+    duration: 1000, // bullet duration
     delay: 3000, // delay to next shot. if it === duration, then obviously will fire next one as previous one reaches end of screen
     bullet_number: -1,
     bullets: [],
@@ -57,10 +59,10 @@ class PlayScreen extends Component {
     let duration_new = duration;
     if (score > 0 && score % 5 === 0) {
       // if (randInt(0, 1) === 0) {
-        // reduce duration - not less then 500
+        // reduce duration - not less then DURATION_MIN
         duration_new -= 200;
-        if (duration_new < 500) {
-          duration_new = 500;
+        if (duration_new < DURATION_MIN) {
+          duration_new = DURATION_MIN;
         }
       // } else {
       //   // reduce delay - not less then half of duration
