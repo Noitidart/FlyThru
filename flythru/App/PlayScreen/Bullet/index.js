@@ -13,6 +13,10 @@ class Bullet extends Component {
     children - string
     hole - object,
     duration - 2000 // time to spend on screen. it reaches bottom of bar at half this
+    bullet_number
+    bulletReachedEOS
+    bulletPassed
+    incrementScore
     */
     state = {
         anim: new Animated.Value(0)
@@ -27,13 +31,13 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        const { duration, incrementScore, bulletPassed } = this.props;
+        const { duration, incrementScore, bulletPassed, bullet_number, bulletReachedEOS } = this.props;
         Animated.timing(anim, { toValue:.5, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
             .start(()=> {
                 // hit test bullet and hole
                 if (this.isBulletWithinHole()) {
                     Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
-                        .start()
+                        .start(()=>bulletReachedEOS(bullet_number))
                     incrementScore();
                     bulletPassed();
                 } else {
@@ -66,8 +70,8 @@ class Bullet extends Component {
         const { height } = Dimensions.get('screen');
 
         return {
-            topoff: -1 * Math.round(height / 1.5), // some unexact/unmeasured place off screen on bottom
-            btmoff: Math.round(height / 1.5), // some unexact/unmeasured place off screen on bottom
+            topoff: -1 * Math.round(height / 2), // some unexact/unmeasured place off screen on bottom
+            btmoff: Math.round(height / 2), // some unexact/unmeasured place off screen on bottom
             btmbar: bullet_protrusions_height + HOLE_HEIGHT // top of bullet lined to bottom of bar // can read the math as "top_portion_height + bar_height"
         }
     }

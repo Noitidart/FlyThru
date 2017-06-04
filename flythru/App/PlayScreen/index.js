@@ -15,7 +15,8 @@ class PlayScreen extends Component {
     score: 0,
     duration: 3000, // bullet duration
     delay_after_pass: 3000 / 2, // duration divided 2 means it will wait till it gets to end of screen
-    bullet_number: 0
+    bullet_number: 0,
+    bullets: [0]
   }
   constructor(props) {
     super(props);
@@ -29,11 +30,19 @@ class PlayScreen extends Component {
     const { delay_after_pass } = this.state;
     setTimeout(this.shootAgain, delay_after_pass);
   }
+  bulletReachedEOS = bullet_number => {
+    this.setState(({ bullets })=>({
+      bullets: bullets.filter(a_bulet_number => a_bulet_number !== bullet_number)
+    }));
+  }
   shootAgain = () => {
-    this.setState(({bullet_number})=>({bullet_number:bullet_number+1}));
+    this.setState(({ bullets, bullet_number })=>({
+      bullet_number: bullet_number+1,
+      bullets: [...bullets, bullet_number+1]
+    }));
   }
   render() {
-    const { score, duration, bullet_number } = this.state;
+    const { score, duration, bullets } = this.state;
 
     return (
       <View style={styles.mainview}>
@@ -43,7 +52,7 @@ class PlayScreen extends Component {
         <View style={styles.barview}>
           <View style={styles.bar} />
           <Hole hackref={this.hole} />
-          <Bullet duration={duration} key={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} />
+          { bullets.map( bullet_number => <Bullet duration={duration} key={bullet_number} bullet_number={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} bulletReachedEOS={this.bulletReachedEOS} /> ) }
         </View>
       </View>
     );
