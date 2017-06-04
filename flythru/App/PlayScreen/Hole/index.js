@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, Animated, Platform, Vibration } from 'react-native'
+import { View, Text, Dimensions, Animated, Platform } from 'react-native'
 import { Accelerometer } from 'react-native-sensors'
 
 import styles, { HOLE_WIDTH } from './style.css'
@@ -31,7 +31,6 @@ class Hole extends Component {
     }
     stop = () => { // bind untested
         this.accel.stop();
-        Vibration.vibrate();
     }
     render() {
         const { x, y, z } = this.state;
@@ -66,15 +65,15 @@ class Hole extends Component {
                     this.left = left_new;
                 }
 
-                info_el = [
-                    <Text key="0">Orienation: {portrait ? 'Portrait' : 'Landscape'}</Text>,
-                    <Text key="1">Tilt: {tilt.toFixed(2)}</Text>,
-                    <Text key="2">Roll: {roll.toFixed(2)}</Text>,
-                    <Text key="3">Pitch: {pitch.toFixed(2)}</Text>,
-                    <Text key="4">Accel X: {x.toFixed(2)}</Text>,
-                    <Text key="5">Accel Y: {y.toFixed(2)}</Text>,
-                    <Text key="6">Accel Z: {z.toFixed(2)}</Text>
-                ];
+                // info_el = [
+                //     <Text key="0">Orienation: {portrait ? 'Portrait' : 'Landscape'}</Text>,
+                //     <Text key="1">Tilt: {tilt.toFixed(2)}</Text>,
+                //     <Text key="2">Roll: {roll.toFixed(2)}</Text>,
+                //     <Text key="3">Pitch: {pitch.toFixed(2)}</Text>,
+                //     <Text key="4">Accel X: {x.toFixed(2)}</Text>,
+                //     <Text key="5">Accel Y: {y.toFixed(2)}</Text>,
+                //     <Text key="6">Accel Z: {z.toFixed(2)}</Text>
+                // ];
             }
         }
         const styles_tilt = {

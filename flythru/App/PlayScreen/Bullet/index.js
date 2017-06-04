@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, Animated, Platform, Easing } from 'react-native'
+import { Vibration, View, Text, Dimensions, Animated, Platform, Easing } from 'react-native'
 
 import { wait, getStatusBarHeight, randInt } from '../../utils'
 import { HOLE_WIDTH, HOLE_HEIGHT } from '../Hole/style.css' // bar height is same as hole height
@@ -27,16 +27,19 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        const { duration } = this.props;
+        const { duration, incrementScore, bulletPassed } = this.props;
         Animated.timing(anim, { toValue:.5, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
             .start(()=> {
                 // hit test bullet and hole
                 if (this.isBulletWithinHole()) {
                     Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
                         .start()
+                    incrementScore();
+                    bulletPassed();
                 } else {
                     console.log('you lose');
                     this.props.hole.stop();
+                    Vibration.vibrate();
                 }
             });
     }
