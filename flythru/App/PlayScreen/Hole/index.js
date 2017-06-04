@@ -26,6 +26,8 @@ class Hole extends PureComponent {
         //     width -= getStatusBarHeight() * 2;
         // }
 
+        let info_el;
+
         if (this.left === 901) {
             const center = (width / 2) - (HOLE_WIDTH / 2);
             this.left = Math.round(center);
@@ -37,7 +39,9 @@ class Hole extends PureComponent {
 
                 const tilt = portrait ? pitch : roll; // portrait ? x : y;
 
-                const left_new = this.left + tilt;
+                const inverse_landscape = !portrait && pitch > 0;
+                // const inverse_portrait = portrait && pitch < 0; // doesnt work, and i cant get a inverse portrait orientation
+                const left_new = this.left + (tilt * (inverse_landscape ? -1 : 1));
                 if (left_new < 0) {
                     this.left = 0;
                 } else if (left_new > (width - HOLE_WIDTH)) {
@@ -45,6 +49,16 @@ class Hole extends PureComponent {
                 } else {
                     this.left = left_new;
                 }
+
+                info_el = [
+                    <Text key="0">Orienation: {portrait ? 'Portrait' : 'Landscape'}</Text>,
+                    <Text key="1">Tilt: {tilt.toFixed(2)}</Text>,
+                    <Text key="2">Roll: {roll.toFixed(2)}</Text>,
+                    <Text key="3">Pitch: {pitch.toFixed(2)}</Text>,
+                    <Text key="4">Accel X: {x.toFixed(2)}</Text>,
+                    <Text key="5">Accel Y: {y.toFixed(2)}</Text>,
+                    <Text key="6">Accel Z: {z.toFixed(2)}</Text>
+                ];
             }
         }
         const styles_tilt = {
@@ -53,12 +67,7 @@ class Hole extends PureComponent {
 
         return (
             <View style={[styles.hole, styles_tilt]}>
-                {/*<Text>Orienation: {portrait ? 'Portrait' : 'Landscape'}</Text>
-                <Text>Tilt: {tilt.toFixed(2)}</Text>
-                <Text>Roll: {roll.toFixed(2)}</Text>
-                <Text>Pitch: {pitch.toFixed(2)}</Text>
-                <Text>Accel X: {x.toFixed(2)}</Text>
-                <Text>Accel Y: {y.toFixed(2)}</Text>*/}
+                {/*{info_el}*/}
             </View>
         )
     }
