@@ -17,7 +17,7 @@ class PlayScreen extends Component {
   state = {
     tilt: 0,
     score: 0,
-    duration: 1000, // bullet duration
+    duration: 3000, // bullet duration
     delay: 3000, // delay to next shot. if it === duration, then obviously will fire next one as previous one reaches end of screen
     bullet_number: -1,
     bullets: [],
