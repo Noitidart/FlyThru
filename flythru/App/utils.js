@@ -11,3 +11,7 @@ export function getStatusBarHeight() {
     }
     return STATUSBAR_HEIGHT;
 }
+
+export async function wait(ms) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms));
+}

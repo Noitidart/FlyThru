@@ -6,24 +6,28 @@ import Bullet from './Bullet'
 
 import styles from './style.css'
 
-class PlayScreen extends React.Component {
+class PlayScreen extends Component {
   static navigationOptions = {
     title: 'Play'
   }
   state = {
     tilt: 0
   }
+  constructor(props) {
+    super(props);
+    this.hole = {};
+  }
   render() {
     return (
       <View style={styles.mainview}>
-        <Bullet />
         <View style={styles.scoreview}>
           <Text style={styles.scoretext}>0</Text>
         </View>
         <View style={styles.barview}>
           <View style={styles.bar} />
-          <Hole />
+          <Hole hackref={this.hole} />
         </View>
+        <Bullet hole={this.hole} />
         <View style={styles.footview} />
       </View>
     );

@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     bar: {
         backgroundColor: 'lightsteelblue',
         height: HOLE_HEIGHT
+    },
+    scoretext: {
+        fontSize: 50,
+        textAlign: 'center'
     }
 })
 

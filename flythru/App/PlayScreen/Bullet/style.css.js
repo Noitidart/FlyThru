@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         borderRadius: BULLET_WIDTH / 2,
         backgroundColor: '#999999',
         position: 'absolute',
-        bottom: BULLET_WIDTH * -1,
+        // bottom: BULLET_WIDTH * -1,
+        top: 0,
         left: 0
     }
 })

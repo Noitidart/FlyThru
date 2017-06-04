@@ -8,11 +8,12 @@ class Hole extends PureComponent {
     /* props
     children - string
     anim
+    hackref - object
     */
     constructor(props) {
         super(props);
         this.left = 901;
-
+        this.props.hackref.getLeft = () => this.left;
     }
     render() {
         const { Accelerometer } = this.props;
@@ -73,9 +74,7 @@ class Hole extends PureComponent {
 // export default Hole
 
 export default sensors({
-  Accelerometer: {
-    updateInterval: 16, // optional
-  },
+  Accelerometer: false,
   Gyroscope: false,
   Magnetometer: false
 })(Hole);
