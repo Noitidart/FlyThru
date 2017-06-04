@@ -6,7 +6,7 @@ import Ball from '../Ball'
 
 import styles from './style.css'
 
-const ANIM_DURATION = 1000;
+const ANIM_DURATION = 2000;
 const HOVER_DURATION = 1000;
 
 class LandingScreen extends React.Component {

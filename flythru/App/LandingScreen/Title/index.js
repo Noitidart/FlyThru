@@ -40,7 +40,7 @@ class Title extends PureComponent {
         });
 
         const style_hover = {
-            transform: [{ translateY:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,-1,0,1,0,-1,0]}) }]
+            transform: [{ translateY:anim.interpolate({ inputRange:[0,1,1.2,1.4,1.6,1.8,2,2], outputRange:[0,0,-2,0,2,0,-2,0]}) }]
         };
 
         return (
