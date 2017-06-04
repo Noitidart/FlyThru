@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Text, Dimensions, Animated, Platform } from 'react-native'
 import { decorator as sensors } from 'react-native-sensors'
 
-import styles from './style.css'
-
-const HOLE_WIDTH = 100;
+import styles, { HOLE_WIDTH } from './style.css'
 
 class Hole extends PureComponent {
     /* props

@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native'
 
-const HOLE_WIDTH = 100;
+export const HOLE_WIDTH = 100;
+export const HOLE_HEIGHT = 10;
 
 const styles = StyleSheet.create({
     hole: {
         position: 'absolute',
-        height: 10,
+        height: HOLE_HEIGHT,
         width: HOLE_WIDTH,
         backgroundColor: '#FFFFFF'
     }

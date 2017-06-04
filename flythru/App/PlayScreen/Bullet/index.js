@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, Animated, Platform } from 'react-native'
+import { View, Text, Dimensions, Animated, Platform, Easing } from 'react-native'
 
 import styles from './style.css'
 
@@ -25,14 +25,14 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        Animated.timing(anim, { toValue:1, duration:BULLET_ANIM_DURATION, useNativeDriver:true }).start();
+        Animated.timing(anim, { toValue:1, duration:BULLET_ANIM_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true }).start();
     }
     render() {
         const { anim } = this.state;
         const { height } = Dimensions.get('screen');
 
         const style_bullet = {
-            transform: [{ translateY:anim.interpolate({ inputRange:[0,1], outputRange:[0,-1*height] }) }]
+            transform: [{ translateY:anim.interpolate({ inputRange:[0,1], outputRange:[0,-1*(height+BULLET_WIDTH)] }) }]
         };
 
         return <Animated.View style={[styles.bullet, style_bullet]} />;

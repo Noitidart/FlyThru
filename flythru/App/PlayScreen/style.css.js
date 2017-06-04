@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native'
 
+import { HOLE_HEIGHT } from './Hole/style.css'
+
 const styles = StyleSheet.create({
     mainview: {
         flex: 1
@@ -18,13 +20,7 @@ const styles = StyleSheet.create({
     },
     bar: {
         backgroundColor: 'lightsteelblue',
-        height: 10
-    },
-    hole: {
-        position: 'absolute',
-        height: 10,
-        width: 100,
-        backgroundColor: 'gray'
+        height: HOLE_HEIGHT
     }
 })
 

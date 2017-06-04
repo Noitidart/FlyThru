@@ -16,6 +16,7 @@ class PlayScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainview}>
+        <Bullet />
         <View style={styles.scoreview}>
           <Text style={styles.scoretext}>0</Text>
         </View>
@@ -24,7 +25,6 @@ class PlayScreen extends React.Component {
           <Hole />
         </View>
         <View style={styles.footview} />
-        <Bullet />
       </View>
     );
   }
