@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, Animated, Platform } from 'react-native'
+import { View, Text, Dimensions, Animated, Platform, Vibration } from 'react-native'
 import { Accelerometer } from 'react-native-sensors'
 
 import styles, { HOLE_WIDTH } from './style.css'
@@ -31,6 +31,7 @@ class Hole extends Component {
     }
     stop = () => { // bind untested
         this.accel.stop();
+        Vibration.vibrate();
     }
     render() {
         const { x, y, z } = this.state;
