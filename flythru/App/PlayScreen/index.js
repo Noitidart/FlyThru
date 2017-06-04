@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { Vibration, View, Text } from 'react-native'
+
+import { randInt } from '../utils'
 
 import Hole from './Hole'
 import Bullet from './Bullet'
@@ -14,35 +16,70 @@ class PlayScreen extends Component {
     tilt: 0,
     score: 0,
     duration: 3000, // bullet duration
-    delay_after_pass: 3000 / 2, // duration divided 2 means it will wait till it gets to end of screen
-    bullet_number: 0,
-    bullets: [0]
+    delay: 3000, // delay to next shot. if it === duration, then obviously will fire next one as previous one reaches end of screen
+    bullet_number: -1,
+    bullets: [],
+    gameover: false
   }
   constructor(props) {
     super(props);
     this.hole = {};
   }
+  crash = () => {
+    this.hole.stop();
+    console.log('you lose');
+    Vibration.vibrate();
+    this.setState(()=>({gameover:true}));
+  }
   incrementScore = () => { // bind untested
     this.setState(({score})=>({score:score+1}));
+    // bullet passed succesfully
   }
   bulletPassed = () => { // bind untested
     // bullet passed succesfully
-    const { delay_after_pass } = this.state;
-    setTimeout(this.shootAgain, delay_after_pass);
+    // const { delay_after_pass } = this.state;
+    // setTimeout(this.shootAgain, delay_after_pass);
   }
   bulletReachedEOS = bullet_number => {
     this.setState(({ bullets })=>({
-      bullets: bullets.filter(a_bulet_number => a_bulet_number !== bullet_number)
+      bullets: bullets.filter( ({ bullet_number:a_bullet_number }) => a_bullet_number !== bullet_number)
     }));
   }
-  shootAgain = () => {
+  componentDidMount() {
+    this.shootAgain();
+  }
+  shootAgain = () => { // bind untested
+    const { gameover, duration, delay, score } = this.state;
+
+    if (gameover) return;
+
+    // every 5 points, randomly reduce duration or delay
+    let duration_new = duration;
+    if (score > 0 && score % 5 === 0) {
+      // if (randInt(0, 1) === 0) {
+        // reduce duration - not less then 500
+        duration_new -= 200;
+        if (duration_new < 500) {
+          duration_new = 500;
+        }
+      // } else {
+      //   // reduce delay - not less then half of duration
+      // }
+    }
+
     this.setState(({ bullets, bullet_number })=>({
+      duration: duration_new,
       bullet_number: bullet_number+1,
-      bullets: [...bullets, bullet_number+1]
+      bullets: [...bullets, {
+        bullet_number: bullet_number+1,
+        duration: duration_new
+      }]
     }));
+
+    setTimeout(this.shootAgain, randInt(duration_new / 2, duration_new)); // timeout of duration means
   }
   render() {
-    const { score, duration, bullets } = this.state;
+    const { score, bullets } = this.state;
 
     return (
       <View style={styles.mainview}>
@@ -52,7 +89,7 @@ class PlayScreen extends Component {
         <View style={styles.barview}>
           <View style={styles.bar} />
           <Hole hackref={this.hole} />
-          { bullets.map( bullet_number => <Bullet duration={duration} key={bullet_number} bullet_number={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} bulletReachedEOS={this.bulletReachedEOS} /> ) }
+          { bullets.map( ({ bullet_number, duration }) => <Bullet duration={duration} key={bullet_number} bullet_number={bullet_number} hole={this.hole} bulletPassed={this.bulletPassed} incrementScore={this.incrementScore} bulletReachedEOS={this.bulletReachedEOS} crash={this.crash} /> ) }
         </View>
       </View>
     );

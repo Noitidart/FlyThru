@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Vibration, View, Text, Dimensions, Animated, Platform, Easing } from 'react-native'
+import { View, Text, Dimensions, Animated, Platform, Easing } from 'react-native'
 
 import { wait, getStatusBarHeight, randInt } from '../../utils'
 import { HOLE_WIDTH, HOLE_HEIGHT } from '../Hole/style.css' // bar height is same as hole height
@@ -31,7 +31,7 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        const { duration, incrementScore, bulletPassed, bullet_number, bulletReachedEOS } = this.props;
+        const { duration, incrementScore, crash, bullet_number, bulletReachedEOS } = this.props;
         Animated.timing(anim, { toValue:.5, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
             .start(()=> {
                 // hit test bullet and hole
@@ -39,11 +39,8 @@ class Bullet extends Component {
                     Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
                         .start(()=>bulletReachedEOS(bullet_number))
                     incrementScore();
-                    bulletPassed();
                 } else {
-                    console.log('you lose');
-                    this.props.hole.stop();
-                    Vibration.vibrate();
+                    crash();
                 }
             });
     }
@@ -77,6 +74,7 @@ class Bullet extends Component {
     }
     render() {
         const { anim } = this.state;
+        const { duration } = this.props;
 
 
         const trans = this.getTranslatePoints();
@@ -85,7 +83,11 @@ class Bullet extends Component {
             transform: [{ translateY:anim.interpolate({ inputRange:[0,.5,1], outputRange:[trans.btmoff, trans.btmbar, trans.topoff] }) }]
         };
 
-        return <Animated.View style={[styles.bullet, style_bullet]} />;
+        return (
+            <Animated.View style={[styles.bullet, style_bullet]}>
+                {/*<Text style={styles.text}>{duration}</Text>*/}
+            </Animated.View>
+        )
     }
 }
 
