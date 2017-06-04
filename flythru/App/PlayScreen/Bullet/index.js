@@ -69,8 +69,10 @@ class Bullet extends Component {
     render() {
         const { anim } = this.state;
 
+        const bullet_protrusions_height = (BULLET_WIDTH-HOLE_HEIGHT)/2; // this is the height of the bullet that sticks on out top, and on bottom of bar
+        const transform_to_bottom_of_bar = bullet_protrusions_height + HOLE_HEIGHT; // top_portion_height + bar_height
         const style_bullet = {
-            transform: [{ translateY:anim.interpolate({ inputRange:[0,1], outputRange:this.getTranslatePoints() }) }]
+            transform: [{ translateY:anim.interpolate({ inputRange:[0,1], outputRange:[0,transform_to_bottom_of_bar] }) }]
         };
 
         return <Animated.View style={[styles.bullet, style_bullet]} />;

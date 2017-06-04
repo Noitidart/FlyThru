@@ -26,9 +26,8 @@ class PlayScreen extends Component {
         <View style={styles.barview}>
           <View style={styles.bar} />
           <Hole hackref={this.hole} />
+          <Bullet hole={this.hole} />
         </View>
-        <Bullet hole={this.hole} />
-        <View style={styles.footview} />
       </View>
     );
   }

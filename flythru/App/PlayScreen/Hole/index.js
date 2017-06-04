@@ -30,7 +30,7 @@ class Hole extends PureComponent {
 
         if (this.left === 901) {
             const center = (width / 2) - (HOLE_WIDTH / 2);
-            this.left = Math.round(center);
+            this.left = 15; //Math.round(center);
         } else {
             if (typeof Accelerometer !== 'undefined') {
                 const { x, y, z } = Accelerometer;

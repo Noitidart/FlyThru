@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     },
     scoreview: {
         // backgroundColor: 'springgreen',
-        flex: 1
+        position: 'absolute',
+        width: '100%'
     },
     barview: {
         flex: 1,
@@ -20,7 +21,9 @@ const styles = StyleSheet.create({
     },
     bar: {
         backgroundColor: 'lightsteelblue',
-        height: HOLE_HEIGHT
+        height: HOLE_HEIGHT,
+        position: 'absolute',
+        width: '100%'
     },
     scoretext: {
         fontSize: 50,
