@@ -1,23 +1,39 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, Dimensions, Animated, Platform } from 'react-native'
-import { decorator as sensors } from 'react-native-sensors'
+import { Accelerometer } from 'react-native-sensors'
 
 import styles, { HOLE_WIDTH } from './style.css'
 
-class Hole extends PureComponent {
+class Hole extends Component {
     /* props
     children - string
     anim
     hackref - object
     */
+    state = {
+        x: 0,
+        y: 0,
+        z: 0
+    }
     constructor(props) {
         super(props);
         this.left = 901;
         this.props.hackref.getLeft = () => this.left;
+        this.props.hackref.stop = this.stop;
+        this.accel = new Accelerometer({ updateInterval: 16 });
+        this.accel.subscribe(this.handleAccel);
+    }
+    componentWillUnmount() {
+        this.stop();
+    }
+    handleAccel = ({x, y, z}) => { // bind untested
+        this.setState(()=>({x,y,z}));
+    }
+    stop = () => { // bind untested
+        this.accel.stop();
     }
     render() {
-        const { Accelerometer } = this.props;
-
+        const { x, y, z } = this.state;
         let { width, height } = Dimensions.get('window');
         const portrait = width > height ? false : true;
 
@@ -32,8 +48,7 @@ class Hole extends PureComponent {
             const center = (width / 2) - (HOLE_WIDTH / 2);
             this.left = Math.round(center);
         } else {
-            if (typeof Accelerometer !== 'undefined') {
-                const { x, y, z } = Accelerometer;
+            if (x !== 0 && y !== 0 && z !== 0) {
                 const roll = Math.atan2(y, z) * 57.3
                 const pitch = Math.atan2((-1*x) , Math.pow((y * y) + (z * z), 0.5)) * 57.3;
 
@@ -71,12 +86,5 @@ class Hole extends PureComponent {
         )
     }
 }
-// export default Hole
 
-export default sensors({
-  Accelerometer: {
-      updateInterval: 20
-  },
-  Gyroscope: false,
-  Magnetometer: false
-})(Hole);
+export default Hole

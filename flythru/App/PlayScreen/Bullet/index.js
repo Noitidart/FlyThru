@@ -8,15 +8,17 @@ import styles from './style.css'
 
 const BULLET_WIDTH = 30;
 
-const ANIM_DURATION = 2000;
-
 class Bullet extends Component {
     /* props
     children - string
-    hole - object
+    hole - object,
+    duration - 2000 // time to spend on screen. it reaches bottom of bar at half this
     */
     state = {
         anim: new Animated.Value(0)
+    }
+    static defaultProps = {
+        duration: 2000
     }
     constructor(props) {
         super(props);
@@ -25,14 +27,16 @@ class Bullet extends Component {
     }
     componentDidMount() {
         const { anim } = this.state;
-        Animated.timing(anim, { toValue:.5, duration:ANIM_DURATION/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
+        const { duration } = this.props;
+        Animated.timing(anim, { toValue:.5, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
             .start(()=> {
                 // hit test bullet and hole
                 if (this.isBulletWithinHole()) {
-                    Animated.timing(anim, { toValue:1, duration:ANIM_DURATION/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
+                    Animated.timing(anim, { toValue:1, duration:duration/2, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
                         .start()
                 } else {
                     console.log('you lose');
+                    this.props.hole.stop();
                 }
             });
     }
