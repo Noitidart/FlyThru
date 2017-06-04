@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
+import Hole from './Hole'
+
 import styles from './style.css'
 
 class PlayScreen extends React.Component {
   static navigationOptions = {
     title: 'Play'
   }
+  state = {
+    tilt: 0
+  }
   render() {
-    return <Text>PlayScreen</Text>;
+    return (
+      <View style={styles.mainview}>
+        <View style={styles.scoreview}>
+          <Text style={styles.scoretext}>0</Text>
+        </View>
+        <View style={styles.barview}>
+          <View style={styles.bar} />
+          <Hole />
+        </View>
+        <View style={styles.footview} />
+      </View>
+    );
   }
 }
 

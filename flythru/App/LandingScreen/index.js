@@ -41,7 +41,7 @@ class LandingScreen extends React.Component {
             alignSelf: 'center',
             marginRight: '10%',
             transform: [
-                { scale: anim.interpolate({ inputRange:[0,1,2], outputRange:[0,1,1] }) }
+                { scale: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] }) }
             ],
             opacity: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] })
         };
