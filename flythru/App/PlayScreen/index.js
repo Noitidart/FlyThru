@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
 import Hole from './Hole'
+import Bullet from './Bullet'
 
 import styles from './style.css'
 
@@ -23,6 +24,7 @@ class PlayScreen extends React.Component {
           <Hole />
         </View>
         <View style={styles.footview} />
+        <Bullet />
       </View>
     );
   }

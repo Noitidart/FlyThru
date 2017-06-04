@@ -26,8 +26,8 @@ class Ball extends PureComponent {
     cycleHover = () => {
         const { anim } = this.state;
         Animated.sequence([
-            Animated.timing(anim, { toValue:1, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear) }),
-            Animated.timing(anim, { toValue:0, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear) })
+            Animated.timing(anim, { toValue:1, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true }),
+            Animated.timing(anim, { toValue:0, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
         ]).start(this.cycleHover);
     }
     render() {

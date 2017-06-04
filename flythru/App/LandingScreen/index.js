@@ -23,14 +23,14 @@ class LandingScreen extends React.Component {
 
         // animation
         const { anim } = this.state;
-        Animated.timing(anim, { toValue:1, duration:ANIM_DURATION }).start(this.cycleHover);
+        Animated.timing(anim, { toValue:1, duration:ANIM_DURATION, useNativeDriver:true }).start(this.cycleHover);
 
     }
     cycleHover = () => {
         const { anim } = this.state;
         Animated.sequence([
-            Animated.timing(anim, { toValue:2, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear) }),
-            Animated.timing(anim, { toValue:1, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear) })
+            Animated.timing(anim, { toValue:2, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true }),
+            Animated.timing(anim, { toValue:1, duration:HOVER_DURATION, easing:Easing.inOut(Easing.linear), useNativeDriver:true })
         ]).start(this.cycleHover);
     }
     render() {

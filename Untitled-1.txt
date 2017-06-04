@@ -6,6 +6,16 @@ import styles from './style.css'
 
 const HOLE_WIDTH = 100;
 
+const BULLET_ANIM_DURATION = 1000;
+const BULLET_ANIM_DELAY = 1000;
+const banim = new Animated.Value(0);
+
+function repeatShot() {
+    banim.setValue(0);
+    Animated.timing(banim, { toValue:1, duration:BULLET_ANIM_DURATION, delay:1000 }).start(repeatShot);
+}
+
+
 class Hole extends PureComponent {
     /* props
     children - string
@@ -65,9 +75,17 @@ class Hole extends PureComponent {
         const styles_tilt = {
             left: this.left
         };
+
+        const style_bullet = {
+
+        };
+
         return (
-            <View style={[styles.hole, styles_tilt]}>
-                {/*{info_el}*/}
+            <View style={{position:'absolute'}}>
+                <View style={[styles.hole, styles_tilt]}>
+                    {/*{info_el}*/}
+                </View>
+                <View style={[styles.bullet, style_bullet]} />
             </View>
         )
     }
