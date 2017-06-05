@@ -37,6 +37,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		B13817B8AE6D4F97A58C62B7 /* mfglabsiconset-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07B368CFA8F041898D45096A /* mfglabsiconset-webfont.ttf */; };
 		91195B6EEF7C476E97DDC86F /* libRNSensors.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D52390EA70D34A488D125CC3 /* libRNSensors.a */; };
+		F9961A81D2BA485EB0815FC2 /* Balder LL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77B3C1A001B840019400150A /* Balder LL.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +260,7 @@
 		07B368CFA8F041898D45096A /* mfglabsiconset-webfont.ttf */ = {isa = PBXFileReference; name = "mfglabsiconset-webfont.ttf"; path = "../App/assets/fonts/mfglabsiconset-webfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E9C2654C1BC44F7B835407FA /* RNSensors.xcodeproj */ = {isa = PBXFileReference; name = "RNSensors.xcodeproj"; path = "../node_modules/react-native-sensors/ios/RNSensors.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		D52390EA70D34A488D125CC3 /* libRNSensors.a */ = {isa = PBXFileReference; name = "libRNSensors.a"; path = "libRNSensors.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		77B3C1A001B840019400150A /* Balder LL.ttf */ = {isa = PBXFileReference; name = "Balder LL.ttf"; path = "../App/assets/fonts/Balder LL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +496,7 @@
 			isa = "PBXGroup";
 			children = (
 				07B368CFA8F041898D45096A /* mfglabsiconset-webfont.ttf */,
+				77B3C1A001B840019400150A /* Balder LL.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				B13817B8AE6D4F97A58C62B7 /* mfglabsiconset-webfont.ttf in Resources */,
+				F9961A81D2BA485EB0815FC2 /* Balder LL.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

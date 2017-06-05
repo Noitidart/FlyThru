@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { View, Text, TouchableHighlight, Animated, Easing } from 'react-native'
 
+import { randInt } from '../utils'
+
 import styles from './style.css'
 
 const HOVER_DURATION = 1000;
@@ -48,8 +50,10 @@ class Ball extends PureComponent {
             alignSelf: 'flex-start',
             padding: 2,
             transform: [
-                { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,-2,0,2,0,-2,0]}) },
-                { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,2,0,-2,0,2,0]}) }
+                // { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,-2,0,2,0,-2,0]}) },
+                // { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,2,0,-2,0,2,0]}) }
+                { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-2, 2),0,randInt(-2, 2),0,randInt(-2, 2),0]}) },
+                { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-2, 2),0,randInt(-2, 2),0,randInt(-2, 2),0]}) }
             ]
         };
 

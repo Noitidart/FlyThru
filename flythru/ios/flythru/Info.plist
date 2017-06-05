@@ -54,6 +54,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>mfglabsiconset-webfont.ttf</string>
+		<string>Balder LL.ttf</string>
 	</array>
 </dict>
 </plist>

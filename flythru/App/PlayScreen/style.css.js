@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     },
     scoretext: {
         fontSize: 50,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'Balder LL'
     }
 })
 

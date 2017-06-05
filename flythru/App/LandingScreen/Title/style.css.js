@@ -13,12 +13,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         fontSize: 50,
         lineHeight: 70,
-        color: '#444444'
+        color: '#888888',
+        fontFamily: 'Balder LL'
     },
     title_char_big: {
         marginHorizontal: 5,
         fontSize: 60,
-        color: '#444444'
+        color: '#666666',
+        fontFamily: 'Balder LL'
     }
 })
 
