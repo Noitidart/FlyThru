@@ -20,14 +20,18 @@ class Hole extends Component {
         this.left = 901;
         this.props.hackref.getLeft = () => this.left;
         this.props.hackref.stop = this.stop;
-        this.accel = new Accelerometer({ updateInterval: 16 });
-        this.accel.subscribe(this.handleAccel);
+        this.props.hackref.start = this.start;
+        this.start();
     }
     componentWillUnmount() {
         this.stop();
     }
     handleAccel = ({x, y, z}) => { // bind untested
         this.setState(()=>({x,y,z}));
+    }
+    start = () => { // bind untested
+        this.accel = new Accelerometer({ updateInterval: 16 });
+        this.accel.subscribe(this.handleAccel);
     }
     stop = () => { // bind untested
         this.accel.stop();

@@ -15,10 +15,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    footview: {
-        // backgroundColor: 'orange',
-        flex: 1
-    },
     bar: {
         backgroundColor: 'lightsteelblue',
         height: HOLE_HEIGHT,
@@ -27,8 +23,16 @@ const styles = StyleSheet.create({
     },
     scoretext: {
         fontSize: 50,
-        textAlign: 'center',
-        fontFamily: 'Balder LL'
+        textAlign: 'center'
+    },
+    controls: {
+        position: 'absolute',
+        top: '100%',
+        width: '100%',
+        backgroundColor: '#FFFFFF', // if i dont set this - for some reason on restart game and lose again - android doesnt show the controls again
+        height: 200, // android needs to show the anim
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 })
 
