@@ -39,7 +39,7 @@ class LandingScreen extends React.Component {
 
         const style_ball_play = {
             alignSelf: 'center',
-            marginRight: '10%',
+            // marginRight: '10%',
             transform: [
                 { scale: anim.interpolate({ inputRange:[0,0.5,2], outputRange:[0,1,1] }) }
             ],
@@ -69,16 +69,16 @@ class LandingScreen extends React.Component {
                 <Title anim={anim}>FlyThru</Title>
                 <View style={styles.controls}>
                     <Animated.View style={style_ball_play}>
-                        <Ball label="&#61455;" onPress={this.gotoPlay} size={200} hover />
+                        <Ball label="&#61455;" onPress={this.gotoPlay} size={280} hover />
                     </Animated.View>
-                    <View style={styles.subcontrols}>
+                    {/*<View style={styles.subcontrols}>
                         <Animated.View style={style_ball_history}>
                             <Ball label="&#62768;" onPress={this.gotoHistory} size={100} hover />
                         </Animated.View>
                         <Animated.View style={style_ball_settings}>
                             <Ball label="&#39041;" onPress={this.gotoSettings} size={110} hover />
                         </Animated.View>
-                    </View>
+                    </View>*/}
                 </View>
             </View>
         )
