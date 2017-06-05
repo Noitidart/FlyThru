@@ -48,7 +48,7 @@ class Ball extends PureComponent {
 
         const style_hover = !hover ? undefined : {
             alignSelf: 'flex-start',
-            padding: 2,
+            padding: 5,
             transform: [
                 // { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,-2,0,2,0,-2,0]}) },
                 // { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,2,0,-2,0,2,0]}) }

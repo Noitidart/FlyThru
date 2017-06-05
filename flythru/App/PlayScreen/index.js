@@ -127,9 +127,11 @@ class PlayScreen extends Component {
         transform: [{ translateY:gameover_anim.interpolate({ inputRange:[0,SEN,1], outputRange:[0,0,-200] }) }]
       };
       style_home = {
+        padding: 5, // needed for android so oveflow doesnt cut off on ball hover
         transform: [{ translateY:gameover_anim.interpolate({ inputRange:[0,SEN,SEN+.2,SEN+.6,1], outputRange:[50,50,50,0,0] }) }]
       };
       style_replay = {
+        padding: 5, // needed for android so oveflow doesnt cut off on ball hover
         transform: [{ translateY:gameover_anim.interpolate({ inputRange:[0,SEN,SEN+.4,SEN+.8,1], outputRange:[75,75,75,0,0] }) }]
       };
       style_score = {
