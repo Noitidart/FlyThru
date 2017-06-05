@@ -52,8 +52,8 @@ class Ball extends PureComponent {
             transform: [
                 // { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,-2,0,2,0,-2,0]}) },
                 // { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,2,0,-2,0,2,0]}) }
-                { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-2, 2),0,randInt(-2, 2),0,randInt(-2, 2),0]}) },
-                { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-2, 2),0,randInt(-2, 2),0,randInt(-2, 2),0]}) }
+                { translateX:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-5, 5),0,randInt(-5, 5),0,randInt(-5, 5),0]}) },
+                { translateY:anim.interpolate({ inputRange:[0,.2,.4,.6,.8,1,1], outputRange:[0,randInt(-5, 5),0,randInt(-5, 5),0,randInt(-5, 5),0]}) }
             ]
         };
 

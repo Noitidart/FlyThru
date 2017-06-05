@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { Platform } from 'react-native'
 
 const styles = StyleSheet.create({
     touch: {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     label: {
-        fontFamily: 'mfglabsiconset-webfont',
+        fontFamily: Platform.OS === 'ios' ? 'MFGLabsIconset-Regular' : 'mfglabsiconset-webfont',
         color: '#3E5F6C'
     }
 })

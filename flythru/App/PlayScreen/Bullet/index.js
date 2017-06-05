@@ -88,7 +88,8 @@ class Bullet extends Component {
         return {
             topoff: -1 * Math.round(height / 2), // some unexact/unmeasured place off screen on bottom
             btmoff: Math.round(height / 2), // some unexact/unmeasured place off screen on bottom
-            btmbar: bullet_protrusions_height + HOLE_HEIGHT // top of bullet lined to bottom of bar // can read the math as "top_portion_height + bar_height"
+            btmbar: bullet_protrusions_height + HOLE_HEIGHT, // top of bullet lined to bottom of bar // can read the math as "top_portion_height + bar_height"
+            topbar: bullet_protrusions_height
         }
     }
     render() {
@@ -99,7 +100,7 @@ class Bullet extends Component {
         const trans = this.getTranslatePoints();
         const style_bullet = {
             left: this.left,
-            transform: [{ translateY:anim.interpolate({ inputRange:[0,.5,1], outputRange:[trans.btmoff, trans.btmbar, trans.topoff] }) }]
+            transform: [{ translateY:anim.interpolate({ inputRange:[0,.5,1], outputRange:[trans.btmoff, trans.topbar, trans.topoff] }) }]
         };
 
         return (

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { Platform } from 'react-native'
 
 import { HOLE_HEIGHT } from './Hole/style.css'
 
@@ -9,7 +10,9 @@ const styles = StyleSheet.create({
     scoreview: {
         // backgroundColor: 'springgreen',
         position: 'absolute',
-        width: '100%'
+        width: '100%',
+        backgroundColor: 'transparent', // ios needs this else on react-navigation transition to landing we see it covered by this
+        marginTop: Platform.OS === 'ios' ? 15 : undefined, // ios needs this // ios has status bar height in way /Users/noitidart/Pictures/Screenshot -  4, 2017 8.42 PM.png
     },
     barview: {
         flex: 1,

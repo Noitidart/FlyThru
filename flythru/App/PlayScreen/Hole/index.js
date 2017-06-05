@@ -60,7 +60,14 @@ class Hole extends Component {
 
                 const inverse_landscape = !portrait && pitch > 0;
                 // const inverse_portrait = portrait && pitch < 0; // doesnt work, and i cant get a inverse portrait orientation
-                const left_new = this.left + (tilt * (inverse_landscape ? -1 : 1));
+                let inverse_portrait;
+                if (Platform.OS === 'ios') {
+                    inverse_portrait = true;
+                } else {
+                    inverse_portrait = false;
+                }
+                // const left_new = this.left + (tilt * (inverse_landscape ? -1 : 1));
+                const left_new = this.left + (tilt * (inverse_portrait ? -1 : 1));
                 if (left_new < 0) {
                     this.left = 0;
                 } else if (left_new > (width - HOLE_WIDTH)) {
