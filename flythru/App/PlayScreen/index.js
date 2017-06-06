@@ -36,7 +36,7 @@ class PlayScreen extends Component {
     this.setState(()=>({gameover:true}));
     this.hole.stop();
     Animated.timing(gameover_anim, { toValue:1, duration:700, useNativeDriver:true }).start();
-    console.log('you lose');
+    // console.log('you lose');
     Vibration.vibrate();
   }
   incrementScore = () => { // bind untested
