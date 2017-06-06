@@ -72,8 +72,8 @@ class Bullet extends Component {
         const bullet_left = this.left;
         const bullet_right = bullet_left + BULLET_WIDTH;
 
-        console.log('bullet_left:', bullet_left, 'hole_left:', hole_left);
-        console.log('bullet_right:', bullet_right, 'hole_right:', hole_right);
+        // console.log('bullet_left:', bullet_left, 'hole_left:', hole_left);
+        // console.log('bullet_right:', bullet_right, 'hole_right:', hole_right);
         if (bullet_left >= hole_left && bullet_right <= hole_right) {
             return true;
         } else {
